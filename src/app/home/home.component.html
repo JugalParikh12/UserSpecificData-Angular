@@ -1,0 +1,50 @@
+<dx-popup id="popup"  [(visible)]="isPopupVisible" [hideOnOutsideClick]="true" [height]="500"
+[width]="500"
+[resizeEnabled]="true" position="center">
+    <div>
+        <dx-text-box [(value)]="titleCard" label="Add Your Title" labelMode="floating"></dx-text-box>
+        <dx-text-area [(value)]="longText" [maxLength]="500" label="Write your thoughts here!" [minHeight]="50" [maxHeight]="300"
+         [autoResizeEnabled]="true" labelMode="floating"></dx-text-area>
+         <br>
+         <dx-button text="submit" (onClick)="submit()" class="btn btn-success"></dx-button>
+    </div>
+</dx-popup>
+
+<button class="btn btn-danger float-end" (click)="logout('login')">Logout</button>
+<button (click)="togglePopup()" class="btn btn-primary">Create</button>
+Search Card: 
+<dx-text-box class="search" [(value)]="searchText" (onInput)="searchEvent($event)"></dx-text-box>
+<dx-popup id="popup2"  [(visible)]="isPopupVisible2" [hideOnOutsideClick]="true" [height]="500"
+[width]="500" position="center">
+Are you sure you want to DELETE this card?
+<br>
+<button (click)="deleteData(ivalue)" class="btn btn-success">YES</button>
+<button class="btn btn-danger" (click)="toggleDelete(ivalue)">NO</button>
+</dx-popup>
+<!-- <dx-button text="Create" (onClick)="createCard()"> -->
+<!-- </dx-button> -->
+<br>
+
+<ng-container *ngFor="let card of filteredCard ;let i=index">
+
+<div *ngIf="searched==='' || card.title.toLowerCase().includes(searched) || card.dataa.toLowerCase().includes(searched)" id="cardss">
+    
+ 
+
+  <div class="card" style="width: 18rem;">
+    <h2 class="card-header">{{card.title}}</h2>
+    <div class="card-body">
+      <br>
+      <p class="card-text" >{{card.dataa}}</p>
+      <button class="btn btn-success" (click)="toggleCard(i,show)">Update</button>
+      <button class="btn btn-danger" (click)="toggleDelete(i)">Delete</button>
+      
+      
+    </div>
+    
+  </div>
+
+  
+</div>
+</ng-container>
+

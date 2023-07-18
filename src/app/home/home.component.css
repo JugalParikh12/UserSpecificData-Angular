@@ -1,0 +1,13 @@
+#cardss{
+    display: inline-block;
+    margin: 10px;
+    margin-left: 6px;
+}
+.btn{
+    margin: 10px;
+}
+.search {  
+    display: inline-block;  
+    width: 15%;  
+
+}  
