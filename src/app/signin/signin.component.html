@@ -1,29 +1,47 @@
-    <div class="container py-5 h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-          <div class="card bg-dark text-white" style="border-radius: 1rem;">
-            <div class="card-body p-5 text-center">
-  
-              <div class="mb-md-5 mt-md-4 pb-5">
-  
-                <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
-                <p class="text-white-50 mb-5">Please enter your username and password!</p>
-                <dx-text-box mode="text" placeholder="username" [(value)]="val_username" class="form-control form-control-lg">
-                    <dx-validator>
-                        <dxi-validation-rule type="required" message="Please enter username"></dxi-validation-rule>
-                        <dxi-validation-rule type="stringLength" [min]="4" message="Please enter min of 4 letters"></dxi-validation-rule>
-                    </dx-validator>
-                </dx-text-box><br>
-                <dx-text-box mode="password" placeholder="password" [(value)]="val_password" class="form-control form-control-lg">
-                    <dx-validator>
-                        <dxi-validation-rule type="required" message="Please enter password"></dxi-validation-rule>
-                        <dxi-validation-rule type="stringLength" [min]="8" message="Please enter min of 8 characters"></dxi-validation-rule>
-                    </dx-validator>
-                </dx-text-box><br>
-                <dx-button text="Login" (onClick)="login()" class="btn btn-outline-light btn-lg px-5"></dx-button>
-              </div> 
-            </div>
+<div class="container py-5 h-100">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+      <div class="card bg-dark text-white" style="border-radius: 1rem; height: 600px;">
+        <div class="card-body p-5 text-center">
+
+          <div class="mb-md-1 mt-md-4 pb-3">
+
+            <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+            <p class="text-white-50 mb-5">Please enter your username and password!</p>
+
+            <dx-text-box mode="text" placeholder="username" [(value)]="val_username"
+              class="form-control form-control-lg">
+              <dx-validator>
+                <dxi-validation-rule type="required" message="Please enter username"></dxi-validation-rule>
+                <dxi-validation-rule type="stringLength" [min]="4"
+                  message="Please enter min of 4 letters"></dxi-validation-rule>
+              </dx-validator>
+            </dx-text-box><br>
+            <dx-text-box mode="password" placeholder="password" [(value)]="val_password"
+              class="form-control form-control-lg">
+              <dx-validator>
+                <dxi-validation-rule type="required" message="Please enter password"></dxi-validation-rule>
+                <dxi-validation-rule type="stringLength" [min]="8"
+                  message="Please enter min of 8 characters"></dxi-validation-rule>
+              </dx-validator>
+            </dx-text-box><br>
+            <span class="d-flex justify-content-center text-white-50 display">
+              Not a user? "<a href="" class="fw-bold text-body text-white-50 text-decoration-none">Sign Up Here</a>"
+            </span>
+            <br>
+            
+            <a href="forgotpassword" class="d-flex justify-content-center text-white-50">
+              Forgot Password?
+            </a>
+            <br>
+            <a href="changepassword" class="d-flex justify-content-center text-white-50">
+              Change Password?
+            </a>
+            <br>
+            <dx-button text="Login" (onClick)="login()" class="btn btn-outline-light btn-lg px-5"></dx-button>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</div>

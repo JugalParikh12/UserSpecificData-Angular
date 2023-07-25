@@ -10,6 +10,10 @@ import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material/card';
 import { RegisterComponent } from './register/register.component';
+import { MatButtonModule } from '@angular/material/button';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
+import { ChangepasswordComponent } from './changepassword/changepassword.component';
+
 
 
 @NgModule({
@@ -18,6 +22,8 @@ import { RegisterComponent } from './register/register.component';
     SigninComponent,
     HomeComponent,
     RegisterComponent,
+    ForgetPasswordComponent,
+    ChangepasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +33,8 @@ import { RegisterComponent } from './register/register.component';
     BrowserAnimationsModule,
     MatCardModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

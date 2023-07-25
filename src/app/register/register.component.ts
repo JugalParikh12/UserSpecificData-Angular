@@ -1,4 +1,3 @@
-import { JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
 
 import { Router } from '@angular/router';
@@ -9,41 +8,52 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 
-export class RegisterComponent{
-  usersarray:any=[]
-  usersObj:any={
-    newuser:'',
-    newpassword:''
+export class RegisterComponent {
+  usersarray: any = []
+  usersObj: any = {
+    newuser: '',
+    newpassword: ''
 
   }
-  x: any;
 
-  
-  constructor(private router:Router){}
-  
-  ngOnInit():void{
 
-  }
-  register():void{
-    
-    this.x=localStorage.getItem('usersarray')
-    if(this.x!=null){
-      this.usersarray=JSON.parse(this.x)
+  constructor(private router: Router) { }
+
+  ngOnInit(): void {
+
+    const localdata = localStorage.getItem('usersarray')
+    if (localdata != null) {
+      this.usersarray = JSON.parse(localdata)
     }
-    
 
-    this.usersarray.push(this.usersObj)
-
-    localStorage.setItem('usersarray',JSON.stringify(this.usersarray))
-    this.usersObj={
-      newuser:'',
-      newpassword:''
-  
-    }
-  
-    
-    this.router.navigate(["/login"]);
   }
-  
-  
+  register(e: any) {
+
+    const isUserExist = this.usersarray.findIndex((m: { newuser: string; newpassword: string; }) => m.newuser == this.usersObj.newuser);
+    if (isUserExist == -1) {
+      let result = e.validationGroup.validate();
+      if (result.isValid) {
+        // Submit values to the server
+        let x = localStorage.getItem('usersarray')
+        if (x != null) {
+          this.usersarray = JSON.parse(x)
+        }
+
+
+        this.usersarray.push(this.usersObj)
+
+        localStorage.setItem('usersarray', JSON.stringify(this.usersarray))
+        this.router.navigate(["/login"]);
+      }
+
+    }
+    else {
+      alert('Username already exist!!')
+    }
+
+
+
+  }
+
+
 }

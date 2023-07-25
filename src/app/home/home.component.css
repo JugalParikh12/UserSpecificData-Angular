@@ -8,6 +8,41 @@
 }
 .search {  
     display: inline-block;  
-    width: 15%;  
+    width: 62%;  
 
 }  
+.searchText{
+    margin: 10px;
+    margin-left: 9px;
+    color: white;
+}
+.updatee{
+    margin-right: 40px;
+}
+.titleHead{
+    background-color: #4A55A2;
+    color: white;
+}
+.dataHere{
+    background-color: #A0BFE0;
+}
+.cards{
+    transition: 400ms;
+}
+.cards:hover{
+    transform: scale(1.1);
+}
+
+body {
+  height: 713px;
+  width: 100%;
+  background-image: url('bg.avif');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+.new{
+    border: solid 2px white;
+    background-color: #4A55A2;
+    color: white;
+}

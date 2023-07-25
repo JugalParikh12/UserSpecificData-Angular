@@ -5,7 +5,10 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  animations: [
+    // animation triggers go here
+  ]
 })
 export class HomeComponent implements OnInit {
   isPopupVisible: boolean;
@@ -20,9 +23,10 @@ export class HomeComponent implements OnInit {
   searchText: any
   searched: string = "";
   localitem: any;
-  index = localStorage.getItem('index')
+  user_name = localStorage.getItem('loginname')
   filteredCard: any;
-  val:any
+  val: any
+  name: any;
 
   constructor(private router: Router) {
     this.localitem = localStorage.getItem("newCard")
@@ -32,29 +36,34 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.newCard != null) {
-      this.filteredCard = this.newCard.filter(res => res.userIndex === this.index)
-      console.log(this.filteredCard)
-    }
+    this.getCards();
+
   }
+  getCards() {
+    if (this.newCard != null) {
+      this.filteredCard = this.newCard.filter(res => res.userName === this.user_name)
+    }
+    this.name = localStorage.getItem('loginname')
+  }
+
   submit() {
     this.isPopupVisible = false;
     if (this.show == true && this.newCard == null) {
       this.newCard = [{
         dataa: this.longText,
         title: this.titleCard,
-        userIndex: this.index,
-        
+        userName: this.user_name,
+
       }]
     }
     else if (this.show == true) {
       this.newCard.push({
         dataa: this.longText,
         title: this.titleCard,
-        userIndex: this.index,
-        
+        userName: this.user_name,
+
       })
-      
+
       this.longText = "";
       this.titleCard = ""
     }
@@ -65,26 +74,20 @@ export class HomeComponent implements OnInit {
       this.longText = "";
       this.titleCard = ""
     }
+    this.getCards();
     localStorage.setItem("newCard", JSON.stringify(this.newCard))
-    if (this.newCard != null) {
-      this.filteredCard = this.newCard.filter(res => res.userIndex === this.index)
-      console.log(this.filteredCard)
-    }
-    
-    
-
-
   }
+
   deleteData(i: any) {
 
     this.isPopupVisible = false
     this.isPopupVisible2 = !this.isPopupVisible2;
-    this.val=this.newCard.findIndex(s => s.dataa== this.filteredCard[i].dataa && s.title== this.filteredCard[i].title && s.userIndex==this.filteredCard[i].userIndex)
-  
+    this.val = this.newCard.findIndex(s => s.dataa == this.filteredCard[i].dataa && s.title == this.filteredCard[i].title && s.userName == this.filteredCard[i].userName)
+
     this.filteredCard.splice(i, 1)
-    this.newCard.splice(this.val,1)
+    this.newCard.splice(this.val, 1)
     localStorage.setItem("newCard", JSON.stringify(this.newCard))
-    
+
 
   }
 
@@ -99,21 +102,20 @@ export class HomeComponent implements OnInit {
     this.ivalue = i;
     this.isPopupVisible = false;
     this.isPopupVisible2 = !this.isPopupVisible2;
-    console.log(i)
   }
 
   toggleCard(i: any, show: any) {
     this.isPopupVisible = !this.isPopupVisible;
     this.ivalue = i;
-    
+
     this.longText = this.filteredCard[i].dataa
     this.titleCard = this.filteredCard[i].title
 
     this.show = false
-    console.log(i)
+    // console.log(i)
   }
-  logout(pageName: string): void {
-    this.router.navigate([`${pageName}`]);
+  logout(): void {
+    this.router.navigate(['login']);
 
   }
   searchEvent(e: any) {
@@ -124,6 +126,6 @@ export class HomeComponent implements OnInit {
 export class addCard {
   dataa: string = ""
   title: string = ""
-  userIndex: any
+  userName: any
 }
 

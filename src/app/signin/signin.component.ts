@@ -23,7 +23,7 @@ export class SigninComponent implements OnInit{
   }
   login():void{
     const isUserExist = this.loginUsers.find((m: { newuser: string; newpassword: string; }) => m.newuser==this.val_username && m.newpassword==this.val_password);
-    localStorage.setItem("index",JSON.stringify(this.loginUsers.findIndex(item=>item.newuser==this.val_username && item.newpassword==this.val_password)))
+    localStorage.setItem('loginname',this.val_username)
     if(isUserExist!=undefined){
       localStorage.setItem('isLoggedIn','true')
 
@@ -31,7 +31,7 @@ export class SigninComponent implements OnInit{
       this.router.navigate(["/home"]);
       
     }else{
-      localStorage.setItem('isLoggedIn','false')
+      // localStorage.setItem('isLoggedIn','false')
       this.toasterService.error('Invalid Credentials');
     }
 

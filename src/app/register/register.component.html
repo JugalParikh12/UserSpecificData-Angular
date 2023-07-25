@@ -1,27 +1,41 @@
-<section class="vh-100 bg-image">
-  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
-    <div class="container h-100">
+<section class="vh-100 bg-image  aqua-gradient">
+    <div class="container h-100 ">
       <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6 ">
           <div class="card  bg-dark text-white" style="border-radius: 15px;">
             <div class="card-body p-5">
               <h3 class="text-uppercase text-center mb-5">Create your account</h3>
 
               <form>
-
+                
                 <div class="form-outline mb-4">
-                    <dx-text-box type="text" class="form-control form-control-lg" placeholder="username" [(value)]="usersObj.newuser"></dx-text-box>
-                </div>
+                  
+                    <dx-text-box type="text" class="form-control form-control-lg" placeholder="username" [(value)]="usersObj.newuser">
+                      <dx-validator validationGroup="validationGroup">
+                        <dxi-validation-rule type="required" message="Please enter username"></dxi-validation-rule>
+                        <dxi-validation-rule type="stringLength" [min]="6" message="Please enter min of 6 letters"></dxi-validation-rule>
+                      </dx-validator>
+                    </dx-text-box>
+                  <br>
+               
+                    <dx-text-box mode="password" class="form-control form-control-lg" placeholder="password" [(value)]="usersObj.newpassword">
+                      <dx-validator validationGroup="validationGroup">
+                        <dxi-validation-rule type="required" message="Please enter password"></dxi-validation-rule>
+                        <dxi-validation-rule type="stringLength" [min]="8" message="Please enter min of 8 characters"></dxi-validation-rule>
+                        <dxi-validation-rule type="pattern" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&*!])[A-Za-z\d@#$%^&*!]+$" message="Enter a strong Password"></dxi-validation-rule>
 
-                <div class="form-outline mb-4">
-                    <dx-text-box type="password" class="form-control form-control-lg" placeholder="password" [(value)]="usersObj.newpassword"></dx-text-box>
+                      </dx-validator>
+                    </dx-text-box>
                 </div>
+                <div class="d-flex justify-content-center text-white-50">
+                  Already a user? Go to "<a href="login" class="fw-bold text-body text-white-50 text-decoration-none">Login</a>"
+                </div>
+                <br>
 
                 <div class="d-flex justify-content-center">
-                  <button type="button"
-                  class="btn btn-outline-light btn-lg px-5" (click)="register()">Register</button>
+                  <dx-button type="submit" validationGroup="validationGroup" class="btn btn-outline-light btn-lg px-5" (onClick)="register($event)">Register</dx-button>
                 </div>
-
+                <dx-validation-summary validationGroup="validationGroup"></dx-validation-summary>
               </form>
 
             </div>
@@ -29,5 +43,5 @@
         </div>
       </div>
     </div>
-  </div>
+  
 </section>
